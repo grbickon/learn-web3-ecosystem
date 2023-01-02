@@ -53,6 +53,15 @@ describe("Whitelist", function () {
           "Whitelist full"
         );
     });
+
+    it("Should succeed otherwise", async function () {
+      const { deployedWhitelistContract, owner } = await loadFixture(deployWhitelistFixture);
+
+	  await deployedWhitelistContract.addAddressToWhitelist();
+
+	  expect(await deployedWhitelistContract.numAddressesWhitelisted()).to.equal(1);
+      expect(await deployedWhitelistContract.whitelistedAddresses(owner.address)).to.equal(true);
+	});
   });
 });
 
