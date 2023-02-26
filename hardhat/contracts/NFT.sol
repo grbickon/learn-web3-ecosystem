@@ -27,7 +27,7 @@ contract NFT is ERC721Enumerable, Ownable {
 		_;
 	}
 
-	constructor (string memory baseURI, address whitelistContract) ERC721("GCoin", "G") {
+	constructor (string memory baseURI, address whitelistContract) ERC721("G", "G") {
 		_baseTokenURI = baseURI;
 		whitelist = IWhitelist(whitelistContract);
 	}

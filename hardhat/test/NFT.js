@@ -147,11 +147,10 @@ describe("NFT", function () {
   
   describe("mint", function () {
     it("Should correctly update tokenIds", async function () {
-    	const { deployedNFTContract, deployedWhitelistContract, owner, otherAccount } = await loadFixture(deployNFTFixture);
+      const { deployedNFTContract, deployedWhitelistContract, owner, otherAccount } = await loadFixture(deployNFTFixture);
     	
     	await deployedNFTContract.connect(owner).startPresale();
       await time.increase(301);
-
       await deployedWhitelistContract.connect(owner).addAddressToWhitelist();
       await deployedNFTContract.connect(owner).mint({value: ethers.utils.parseEther("0.01")});
       
@@ -182,7 +181,7 @@ describe("NFT", function () {
       const { deployedNFTContract, deployedWhitelistContract, owner, otherAccount } = await loadFixture(deployNFTFixture);
 
       let balance = await ethers.provider.getBalance(owner.address);
-      //expect (await ethers.provider.getBalance(owner.address)).to.be.equal(balance);
+      expect (await ethers.provider.getBalance(deployedNFTContract.address)).to.be.equal(0);
       
       await deployedNFTContract.connect(owner).startPresale();
       await deployedWhitelistContract.connect(otherAccount).addAddressToWhitelist();
@@ -191,6 +190,7 @@ describe("NFT", function () {
       await deployedNFTContract.connect(owner).withdraw();
       
       expect (await ethers.provider.getBalance(owner.address)).to.be.greaterThan(balance);
+      expect (await ethers.provider.getBalance(deployedNFTContract.address)).to.be.equal(0);
       
     });
   });
