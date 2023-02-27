@@ -71,7 +71,7 @@ describe("NFT", function () {
   
   describe("presaleMint", function () {
   
-    it("Should correctly update tokenIds", async function () {
+    it("Should correctly update tokenIds on success", async function () {
     	const { deployedNFTContract, deployedWhitelistContract, owner, otherAccount } = await loadFixture(deployNFTFixture);
 
       await deployedNFTContract.connect(owner).startPresale();

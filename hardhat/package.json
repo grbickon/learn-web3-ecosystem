@@ -10,10 +10,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.7",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "hardhat": "^2.12.4"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "@openzeppelin/contracts": "^4.8.1",
+    "dotenv": "^16.0.3",
+    "ganache-cli": "^6.12.2",
+    "solidity-coverage": "^0.8.2"
   }
 }
