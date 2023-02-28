@@ -14,7 +14,7 @@ contract Token is ERC20, Ownable {
 
 	mapping(uint256 => bool) public tokenIdsClaimed;
 
-	constructor(address _NFTContract) ERC20("GCoin", "G") {
+	constructor(address _NFTContract) ERC20("C5", "C5s") {
 		NFT = INFT(_NFTContract);
 	}
 

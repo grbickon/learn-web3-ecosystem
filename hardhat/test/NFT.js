@@ -129,11 +129,10 @@ describe("NFT", function () {
       }     
 
       await expect(deployedNFTContract.connect(owner).presaleMint({value: ethers.utils.parseEther("0.01")})).to.be.revertedWith(
-        "Exceeded maximum Crypto Devs supply"
+        "Exceeded maximum supply"
         );
     });
     
-    //TODO
     it("Should fail if Ether sent is not correct", async function () {
       const { deployedNFTContract, deployedWhitelistContract, owner, otherAccount } = await loadFixture(deployNFTFixture);
       

@@ -27,7 +27,7 @@ contract NFT is ERC721Enumerable, Ownable {
 		_;
 	}
 
-	constructor (string memory baseURI, address whitelistContract) ERC721("G", "G") {
+	constructor (string memory baseURI, address whitelistContract) ERC721("C5", "C5") {
 		_baseTokenURI = baseURI;
 		whitelist = IWhitelist(whitelistContract);
 	}
@@ -40,7 +40,7 @@ contract NFT is ERC721Enumerable, Ownable {
 	function presaleMint() public payable onlyWhenNotPaused {
 		require(presaleStarted && block.timestamp < presaleEnded, "Presale not running");
 		require(whitelist.whitelistedAddresses(msg.sender), "You are not whitelisted");
-		require(tokenIds < maxTokenIds, "Exceeded maximum Crypto Devs supply");
+		require(tokenIds < maxTokenIds, "Exceeded maximum supply");
 		require(msg.value >= _price, "Ether sent is not correct");
 		tokenIds += 1;
 
@@ -49,7 +49,7 @@ contract NFT is ERC721Enumerable, Ownable {
 	
 	function mint() public payable onlyWhenNotPaused {
 		require(presaleStarted && block.timestamp >= presaleEnded, "Presale has not ended yet");
-		require(tokenIds < maxTokenIds, "Exceeded maximum Crypto Devs supply");
+		require(tokenIds < maxTokenIds, "Exceeded maximum supply");
 		require(msg.value >= _price, "Ether sent is not correct");
 		tokenIds += 1;
 		_safeMint(msg.sender, tokenIds);
@@ -68,7 +68,7 @@ contract NFT is ERC721Enumerable, Ownable {
 		uint256 amount = address(this).balance;
 		(bool sent, ) = _owner.call{value: amount}("");
 
-		require(sent, "Failed to send Ehter");
+		require(sent, "Failed to send Ether");
 	}
 
 	receive() external payable {}
